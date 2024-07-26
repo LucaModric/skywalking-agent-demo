@@ -1,2 +1,0 @@
-# 关于打包的问题
-项目的包名一定要是groupId + artifactId；比如standalone-plugins中springmvc，如果包名不是com.tiger.springmvc,则打出来的包在app模块作为javaagent引入时会报找不到premain方法。
