@@ -11,7 +11,7 @@ public class InterceptorLoader {
      * 如果拦截器想要访问byte buddy的对象，那么拦截器的类加载器必须是byte buddy的类加载器或者子类加载器
      * 因为同一类加载器，或者父子类加载器之间的类才能互相访问，两个独立的类加载之间的类不能互相访问。
      * @param interceptorName
-     * @param classLoader 这里传进来的是byte buddy的类加载器
+     * @param targetClassLoader 这里传进来的是byte buddy的类加载器
      * @param <T>
      * @return
      * @throws ClassNotFoundException
@@ -23,7 +23,7 @@ public class InterceptorLoader {
             targetClassLoader = InterceptorLoader.class.getClassLoader();
         }
         AgenClassLoader agenClassLoader = new AgenClassLoader(targetClassLoader);
-        Class<?> aClass = Class.forName(interceptorName, true, targetClassLoader);
+        Class<?> aClass = Class.forName(interceptorName, true, agenClassLoader);
         Object o = aClass.newInstance();
         return (T) o;
     }

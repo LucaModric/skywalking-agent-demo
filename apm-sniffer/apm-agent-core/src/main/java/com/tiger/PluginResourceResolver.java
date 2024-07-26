@@ -20,7 +20,7 @@ public class PluginResourceResolver {
     public List<URL> gResources() {
         List<URL> urls = new ArrayList<>();
         try {
-            Enumeration<URL> resources = AgenClassLoader.getDefaultLoader().getResources("skywalking-plugin-def");
+            Enumeration<URL> resources = AgenClassLoader.getDefaultLoader().getResources("skywalking-plugin-def.properties");
             while (resources.hasMoreElements()) {
                 URL pluginDefUrl = resources.nextElement();
                 urls.add(pluginDefUrl);

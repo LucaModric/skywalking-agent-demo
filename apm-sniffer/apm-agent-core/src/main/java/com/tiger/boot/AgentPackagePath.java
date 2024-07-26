@@ -36,7 +36,7 @@ public class AgentPackagePath {
             log.info("the class location is {}", url);
             boolean isInJar = url.indexOf("!") > -1;
             if (isInJar) {
-                String subStr = StringUtils.substringBetween("file:", "!");
+                String subStr = StringUtils.substringBetween(url,"file:", "!");
                 agentJarFile = new File(subStr);
             }
             if (agentJarFile.exists()) {

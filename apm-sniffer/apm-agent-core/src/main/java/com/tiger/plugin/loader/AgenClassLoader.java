@@ -67,7 +67,7 @@ public class AgenClassLoader extends ClassLoader {
         String path = className.replaceAll("\\.", "/") + ".class";
         for (Jar jar : allJars) {
             ZipEntry entry = jar.jarFile.getEntry(path);
-            if (entry != null) {
+            if (entry == null) {
                 continue;
             }
             try {
@@ -100,10 +100,10 @@ public class AgenClassLoader extends ClassLoader {
         List<URL> allResources = new ArrayList<>();
         List<Jar> allJars = getAllJars();
         // getJarEntry 和 getEntry 啥区别
-        for (Jar jar : this.allJars) {
+        for (Jar jar : allJars) {
             // 这里直接使用name是因为Resources目录下的文件打包直接在classpath路径下，不像class文件还有包名路径
             ZipEntry entry = jar.jarFile.getJarEntry(name);
-            if (entry != null) {
+            if (entry == null) {
                 continue;
             }
             URL url = new URL("jar:file:" + jar.fileSource.getAbsolutePath() + "!/" + name);
@@ -175,7 +175,7 @@ public class AgenClassLoader extends ClassLoader {
             }
             for (String jarFile : jarFiles) {
                 File jarSource = new File(path, jarFile);
-                Jar jar = new Jar(new JarFile(jarFile), jarSource);
+                Jar jar = new Jar(new JarFile(jarSource), jarSource);
                 list.add(jar);
             }
 
