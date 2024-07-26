@@ -1,2 +1,5 @@
-# 关于打包的问题
-项目的包名一定要是groupId + artifactId；比如standalone-plugins中springmvc，如果包名不是com.tiger.springmvc,则打出来的包在app模块作为javaagent引入时会报找不到premain方法。
+# skywalking-agent-demo
+skywalking可插拔式架构实现原理Demo
+
+# standalone-plugins
+单独的插件模式，每个插件都需要使用-javaagent引入
